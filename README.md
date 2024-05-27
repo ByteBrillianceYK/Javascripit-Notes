@@ -45,4 +45,4 @@ The repository is organized into the following files and folders:
 
 1. Clone the repository to your local machine:
    ```sh
-   git clone https://github.com/ByteBrillianceYK/Dnyaneshwari-Book-Rental.git
+   git clone https://github.com/ByteBrillianceYK/Javascripit-Notes.git
