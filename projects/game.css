@@ -1,0 +1,67 @@
+/* Reset default margin and padding */
+body,
+h1,
+p,
+form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a modern font and center text */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    margin: 50px 0 20px;
+    font-size: 3rem;
+    color: #333;
+}
+
+p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 40px;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff6347;
+}
+
+.results {
+    margin-top: 30px;
+}
+
+.guesses,
+.remainingGuesses {
+    font-weight: bold;
+    color: #333;
+    display: inline-block;
+    margin-bottom: 15px;
+}

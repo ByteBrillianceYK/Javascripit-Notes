@@ -1,0 +1,391 @@
+project 1:
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Click me to change BGColor</h1>
+    <div id="parent">
+        <button class="btn" id="red">Red</button>
+        <button class="btn" id="blue">Blue</button>
+        <button class="btn" id="green">Green</button>
+        <button class="btn" id="yellow">Yellow</button>
+    </div>
+   <script src="script.js"></script>
+</body>
+</html>
+
+style.css
+body{
+    background-color: #212121;
+    color:aliceblue
+}
+
+h1{
+    text-align: center;
+    margin-top: 10px;
+}
+#parent{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 150px;
+    margin:100px;
+}
+.btn{
+    padding:30px;
+    margin:10px
+}
+.btn:hover{
+    background-color:fuchsia;
+}
+
+script.js
+let div = document.querySelectorAll(".btn")
+// console.log(div[0].innerHTML)
+
+let body = document.querySelector("body")
+console.log(body)
+
+div.forEach(button => {
+    button.addEventListener('click', () => {
+        body.style.backgroundColor =button.innerHTML
+    })
+    
+});
+
+
+
+
+project 2:
+style.css
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #83ccdc;
+    margin: 0;
+    padding: 20px;
+    
+}
+
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+
+}
+
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+
+#results {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+h4 {
+    margin-top: 30px;
+    font-size: 18px;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <h1>BMI Calculator</h1>
+
+   <form>
+
+    Height in CM: <input type="text"  id="height"/>
+    Weight in KG: <input type="text" id="weight"/>
+    <button>Calculate</button>
+
+  
+    Results: <h5 id="results"></h5>
+
+    <h4>General Guide</h4>
+    <p>Under Weight=Less than 18.6</p>
+    <p>Normal Range=18.6 and 24.9</p>
+    <p>Overweight=Greater than 24.9</p>
+
+
+   </form>
+
+   <script src="script.js"></script>
+</body>
+</html>
+
+script.css
+const form = document.querySelector('form');
+form.addEventListener('submit', (i) => { 
+    i.preventDefault();
+
+    const height = parseInt(document.querySelector("#height").value)
+    const weight = parseInt(document.querySelector("#weight").value)
+    
+    const results = document.querySelector("#results")
+    
+    if (height === "" || height < 0 || isNaN(height)) { 
+        results.innerHTML = `invalid height: ${height}`
+    }
+    if (weight === "" || weight < 0 || isNaN(weight)) { 
+        results.innerHTML = `invalid weight: ${weight}`
+    }
+
+    const bmi = (weight / ((height * height) / 10000)).toFixed(2)
+
+    if (bmi < 18.6) {
+        results.innerHTML =`underweight: ${bmi}`
+    } else if (bmi > 24.9) {
+        results.innerHTML = `overweight: ${bmi}`
+
+    } else {
+        results.innerHTML=`normal: ${bmi}`
+    }
+
+    // results.innerHTML=bmi
+    
+})
+
+script.js(guess the number)
+let random =parseInt(Math.random()*100+1)
+// console.log(random)
+
+const submit = document.querySelector('#submit')
+const guessField = document.querySelector('#guessField')
+
+const usedGuesses = document.querySelector('.guesses')
+const remainingGuesses = document.querySelector('.remainingGuesses')
+const tip = document.querySelector('.tip')
+
+const button=document.querySelector('.button')
+
+const results = document.querySelector('.results')
+let prevGuess = []
+let totalGuesses=1
+let playGame=true
+
+if (playGame) {
+    submit.addEventListener('click', (e) => {
+        e.preventDefault()
+        const guess = parseInt(guessField.value)
+        console.log(guess)
+        validateGuess(guess)
+    })
+}
+
+function validateGuess(guess) { 
+    // console.log(guess)
+    if (guess === "" || guess < 1 || isNaN(guess)||guess>100) {
+        alert("Please enter a valid guess")
+        // playGame = false
+    }
+    else {
+        // playGame = true
+        prevGuess.push(guess)
+        if (totalGuesses === 11) {
+            displayGuess(guess)
+            displayMessage(`game over! random number was ${random}`)
+            endGame()
+        } else {
+            displayGuess(guess)
+            checkGuess(guess)
+        }    
+    }
+}
+
+function checkGuess(guess) {
+
+    if (guess === random) {
+        displayMessage("You guessed the right number")
+        endGame()
+    } else if (guess < random) {
+        displayMessage("Number is low")
+    } else if (guess > random) {
+        displayMessage("Number is High")
+    }
+}
+
+function displayGuess(guess) {
+    guessField.value = ''
+    usedGuesses.innerHTML += guess+","
+    totalGuesses++
+    remainingGuesses.innerHTML=11-totalGuesses
+
+}
+
+function displayMessage(message) {
+    tip.innerHTML=message
+}
+
+function endGame() {
+    guessField.value = ''
+    guessField.setAttribute("disabled", "")
+    if (button.firstChild) {
+        button.removeChild(button.firstChild);
+    }
+
+    let button1=document.createElement("button")
+    button1.innerHTML = "New Game"
+    button.appendChild(button1)
+    playGame = false
+    newGame()
+
+}
+
+function newGame() { 
+    button.addEventListener("click", function (e) { 
+        random = parseInt(Math.random() * 100 + 1)
+        prevGuess = []
+        totalGuesses = 1
+        usedGuesses.innerHTML = ''
+        remainingGuesses.innerHTML = 11 - totalGuesses
+        guessField.removeAttribute('disabled')
+        results.removeChild(p)
+        playGame = true
+        
+    })
+}
+
+
+html.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Guess a number</h1>
+    <p>Try and guess a random number between 1 and 100.</p>
+    <p>You have 10 attempts to guess the right number.</p>
+    <form>
+        <input type="text" id="guessField"/>
+        <button id="submit">submit</button>
+
+    </form>
+
+    <div class="results">
+        <p>Used Guesses: <h4 class="guesses"></h4></p>
+        <p>Guesses Remaining: <h4 class="remainingGuesses"></h4></p>
+        <p class="tip"></p>
+        <p class="button"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+style.css
+/* Reset default margin and padding */
+body,
+h1,
+p,
+form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a modern font and center text */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+h1 {
+    margin: 50px 0 20px;
+    font-size: 3rem;
+    color: #333;
+}
+
+p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-bottom: 40px;
+}
+
+input[type="text"] {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff6347;
+}
+
+.results {
+    margin-top: 30px;
+}
+
+.guesses,
+.remainingGuesses {
+    font-weight: bold;
+    color: #333;
+    display: inline-block;
+    margin-bottom: 15px;
+}

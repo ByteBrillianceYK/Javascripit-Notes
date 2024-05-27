@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess game</title>
+    <style>
+        body{
+            font-family: sans-serif;
+            margin: 20px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Validation</h1>
+    <form>
+        <!-- <p>Enter number between 1 to 10</p> -->
+        Name: <input type="text" id="inputValue">
+        <br>
+        <br>
+
+        email: <input type="email" id="emailId"/>
+        <br>
+
+        <input type="submit" id="submitButton">
+    </form>
+
+    
+
+    <script>
+        
+        // let computerGenereatedNumber=Math.floor(Math.random()*10+1)
+        
+        // let count = 1;
+        // console.log(computerGenereatedNumber)
+
+        document.getElementById("submitButton").onclick=function(){
+
+            let name = document.getElementById("inputValue").value
+            console.log(name)
+            if(name.trim()===''){
+                alert("you entered empty value")
+            }
+
+            let email=document.getElementById("emailId").value
+            if(!email.includes('@')) {
+                alert('please enter valid email address')
+            }
+            // if(userGeneratedNumber== computerGenereatedNumber){
+            //     alert(`Congratulations!! You guessed the number right in ${count} guess`)
+            // }
+            
+            // else if(userGeneratedNumber<computerGenereatedNumber){
+            //     count++;
+            //     alert(`you entered less value! pleas try using greater value`)
+            // }
+            // else{
+            //     count++;
+            //     alert(`you entered greater value! pleas try using less value`)
+            // }
+            }
+        
+    </script>
+</body>
+</html>
